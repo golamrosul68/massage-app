@@ -1,14 +1,24 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Not_found from './pages/NotFound'
+import Not_found from "./pages/NotFound";
+import Home from "./pages/Home";
+import Signup from "./pages/Signup";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    element: <Home />,
   },
   {
     path: "*",
     element: <Not_found />,
+  },
+  {
+    path: "/Login",
+    element: <Login />,
+  },
+  {
+    path: "/Signup",
+    element: <Signup />,
   },
 ]);
 
