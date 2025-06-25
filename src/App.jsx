@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import Not_found from './pages/NotFound'
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Hello World</div>,
+  },
+  {
+    path: "*",
+    element: <Not_found />,
+  },
+]);
 
 const App = () => {
-  return (
-    <div className='bg-red-500'>App</div>
-  )
-}
+  return <RouterProvider router={router} />;
+};
 
-export default App
+export default App;
