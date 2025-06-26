@@ -1,9 +1,10 @@
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router";
 
 const Signup = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[url('https://source.unsplash.com/featured/?technology,abstract')] bg-cover bg-center dark:bg-gray-900">
+    <div className=" font-poppins min-h-screen flex items-center justify-center bg-[url('https://source.unsplash.com/featured/?technology,abstract')] bg-cover bg-center dark:bg-gray-900">
       <div className="backdrop-blur-md bg-white/20 dark:bg-gray-900/30 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-fade-in-up">
         {/* Logo */}
         <div className="flex justify-center mb-6">
@@ -25,7 +26,9 @@ const Signup = () => {
           Sign up with Google
         </button>
 
-        <div className="text-white text-sm text-center mb-4">or sign up with email</div>
+        <div className="text-white text-sm text-center mb-4">
+          or sign up with email
+        </div>
 
         {/* Form */}
         <form className="space-y-4">
@@ -68,9 +71,12 @@ const Signup = () => {
         {/* Footer */}
         <p className="mt-4 text-sm text-white text-center animate-fade-in delay-300">
           Already have an account?{" "}
-          <a href="#" className="text-yellow-300 underline hover:text-yellow-400">
-            Log in
-          </a>
+          <Link
+            to={"/Login"}
+            className="text-yellow-300 underline hover:text-black"
+          >
+                log in
+          </Link>
         </p>
       </div>
     </div>
