@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 
 const Signup = () => {
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleName = (e) => {
+    setUserInfo({});
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+    console.log("submited");
+  };
+
   return (
     <div className=" font-poppins min-h-screen flex items-center justify-center bg-[url('https://source.unsplash.com/featured/?technology,abstract')] bg-cover bg-center dark:bg-gray-900">
       <div className="backdrop-blur-md bg-white/20 dark:bg-gray-900/30 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-fade-in-up">
@@ -16,9 +31,12 @@ const Signup = () => {
         </div>
 
         {/* Title */}
-        <h2 className="text-3xl font-bold mb-4 text-center text-white dark:text-white animate-fade-in">
+        <button
+          type="submit"
+          className="text-3xl font-bold mb-4 text-center text-white dark:text-white animate-fade-in"
+        >
           Create Account ✨
-        </h2>
+        </button>
 
         {/* Google Sign Up */}
         <button className="w-full mb-4 flex items-center justify-center py-2 bg-white hover:bg-gray-200 text-gray-700 rounded-lg shadow transition duration-300 animate-slide-in">
@@ -31,9 +49,10 @@ const Signup = () => {
         </div>
 
         {/* Form */}
-        <form className="space-y-4">
+        <form onSubmit={handleSignup} className="space-y-6">
           <div className="animate-slide-in">
             <input
+              onChange={handleName}
               type="text"
               placeholder="Full Name"
               className="w-full px-4 py-2 rounded-lg border border-white/30 bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -75,7 +94,7 @@ const Signup = () => {
             to={"/Login"}
             className="text-yellow-300 underline hover:text-black"
           >
-          log in
+            log in
           </Link>
         </p>
       </div>
