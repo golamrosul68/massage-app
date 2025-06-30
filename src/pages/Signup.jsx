@@ -8,14 +8,28 @@ const Signup = () => {
     email: "",
     password: "",
   });
+  let handleEmail = (e) => {
+    setUserInfo((prev) => {
+      return { ...prev, email: e.target.value };
+    });
+  };
 
   const handleName = (e) => {
-    setUserInfo({});
+    setUserInfo((prev) => {
+      return { ...prev, name: e.target.value };
+    });
+  };
+   const handlePassword = (e) => {
+    setUserInfo((prev) => {
+      return { ...prev, password: e.target.value };
+    });
   };
 
   const handleSignup = (e) => {
     e.preventDefault();
-    console.log("submited");
+    if (!userInfo.name || !userInfo.email || !userInfo.password) {
+      alert ("looo")
+    }
   };
 
   return (
@@ -60,6 +74,7 @@ const Signup = () => {
           </div>
           <div className="animate-slide-in delay-100">
             <input
+              onChange={handleEmail}
               type="email"
               placeholder="Email Address"
               className="w-full px-4 py-2 rounded-lg border border-white/30 bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-pink-500"
@@ -67,18 +82,13 @@ const Signup = () => {
           </div>
           <div className="animate-slide-in delay-200">
             <input
+            onChange={handlePassword}
               type="password"
               placeholder="Password"
               className="w-full px-4 py-2 rounded-lg border border-white/30 bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-pink-500"
             />
           </div>
-          <div className="animate-slide-in delay-300">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              className="w-full px-4 py-2 rounded-lg border border-white/30 bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-pink-500"
-            />
-          </div>
+
           <button
             type="submit"
             className="w-full py-2 bg-pink-600 hover:bg-pink-700 text-white font-semibold rounded-lg transition duration-300 animate-pop-in"
