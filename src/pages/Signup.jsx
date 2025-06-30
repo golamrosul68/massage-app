@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import toast, { Toaster } from "react-hot-toast";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
   const [userInfo, setUserInfo] = useState({
@@ -19,7 +21,7 @@ const Signup = () => {
       return { ...prev, name: e.target.value };
     });
   };
-   const handlePassword = (e) => {
+  const handlePassword = (e) => {
     setUserInfo((prev) => {
       return { ...prev, password: e.target.value };
     });
@@ -28,13 +30,14 @@ const Signup = () => {
   const handleSignup = (e) => {
     e.preventDefault();
     if (!userInfo.name || !userInfo.email || !userInfo.password) {
-      alert ("looo")
+      toast.error("all fileds are required");
     }
   };
 
   return (
     <div className=" font-poppins min-h-screen flex items-center justify-center bg-[url('https://source.unsplash.com/featured/?technology,abstract')] bg-cover bg-center dark:bg-gray-900">
       <div className="backdrop-blur-md bg-white/20 dark:bg-gray-900/30 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-fade-in-up">
+        <Toaster />
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <img
@@ -82,7 +85,7 @@ const Signup = () => {
           </div>
           <div className="animate-slide-in delay-200">
             <input
-            onChange={handlePassword}
+              onChange={handlePassword}
               type="password"
               placeholder="Password"
               className="w-full px-4 py-2 rounded-lg border border-white/30 bg-white/20 text-white placeholder-white focus:outline-none focus:ring-2 focus:ring-pink-500"
