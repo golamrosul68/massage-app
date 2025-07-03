@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
-import { getAuth } from "firebase/auth"
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -10,9 +10,10 @@ const firebaseConfig = {
   projectId: "massage-app-2577c",
   storageBucket: "massage-app-2577c.firebasestorage.app",
   messagingSenderId: "939661547675",
-  appId: "1:939661547675:web:d9018f7255ed9d1758ce3e"
+  appId: "1:939661547675:web:d9018f7255ed9d1758ce3e",
 };
-const auth = getAuth();
+// const auth = getAuth();
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export {auth}
+// export { auth };
+export default firebaseConfig;

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
+  const auth = getAuth();
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -31,6 +32,20 @@ const Signup = () => {
     e.preventDefault();
     if (!userInfo.name || !userInfo.email || !userInfo.password) {
       toast.error("all fileds are required");
+    } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email)) {
+      // toast.success("email is valid");
+    } else {
+      signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          // ...
+        })
+
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+        });
     }
   };
 
