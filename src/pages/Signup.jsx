@@ -34,17 +34,29 @@ const Signup = () => {
       toast.error("all fileds are required");
     } else if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userInfo.email)) {
       // toast.success("email is valid");
-    } else {
-      signInWithEmailAndPassword(auth, userInfo.email, userInfo.password)
+    }
+    
+    
+    
+    
+    
+    else {
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, userInfo.email, userInfo.password)
         .then((userCredential) => {
-          // Signed in
+          // Signed up
           const user = userCredential.user;
           // ...
-        })
 
+
+          console.log("user")
+        })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
+
+          console.log("errorCode")
+          // ..
         });
     }
   };
