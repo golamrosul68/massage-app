@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router"; 
+import { Link } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { app, auth } from "../firebase.config";
 
 const Signup = () => {
-  const auth = getAuth();
+   getAuth(app);
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
@@ -49,7 +50,7 @@ const Signup = () => {
     <div className="font-poppins min-h-screen flex items-center justify-center bg-[url('https://source.unsplash.com/featured/?technology,abstract')] bg-cover bg-center dark:bg-gray-900">
       <div className="backdrop-blur-md bg-white/20 dark:bg-gray-900/30 p-8 rounded-2xl shadow-2xl w-full max-w-md animate-fade-in-up">
         <Toaster />
-        
+
         {/* Logo */}
         <div className="flex justify-center mb-6">
           <img
