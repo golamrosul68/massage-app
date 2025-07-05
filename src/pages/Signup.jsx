@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth,sendEmailVerification } from "firebase/auth";
 import { app, auth } from "../firebase.config";
 
 const Signup = () => {
@@ -35,7 +35,13 @@ const Signup = () => {
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then((userCredential) => { 
+
+        sendEmailVerification(auth.currentUser)
+  .then(() => {
+    // Email verification sent!
+    // ...d
+  });
         const user = userCredential.user;
         console.log(user);
         toast.success("Account created successfully!");
