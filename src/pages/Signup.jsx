@@ -2,17 +2,23 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import toast, { Toaster } from "react-hot-toast";
-import { createUserWithEmailAndPassword, getAuth,sendEmailVerification } from "firebase/auth";
+import { useNavigate } from "react-router";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import { app, auth } from "../firebase.config";
 
 const Signup = () => {
-   getAuth(app);
+  getAuth(app);
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserInfo((prev) => ({ ...prev, [name]: value }));
@@ -35,16 +41,26 @@ const Signup = () => {
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => { 
+      .then((userCredential) => {
+        sendEmailVerification(auth.currentUser).then(() => {
+          updateProfile(auth.currentUser, {
+            displayName: userInfo.name,
+            photoURL: "dammyimage.png",
+          })
+            .then(() => {
+              const user = userCredential.user;
+              console.log(user);
+              toast.success("Account created successfully!");
+              navigate("/");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
 
-        sendEmailVerification(auth.currentUser)
-  .then(() => {
-    // Email verification sent!
-    // ...d
-  });
-        const user = userCredential.user;
-        console.log(user);
-        toast.success("Account created successfully!");
+          const user = userCredential.user;
+          console.log(user);
+          toast.success("Account created successfully!");
+        });
       })
       .catch((error) => {
         console.error(error.code, error.message);
@@ -122,10 +138,7 @@ const Signup = () => {
         {/* Footer */}
         <p className="mt-4 text-sm text-white text-center animate-fade-in delay-300">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-yellow-300 underline hover:text-black"
-          >
+          <Link to="/" className="text-yellow-300 underline hover:text-black">
             Log in
           </Link>
         </p>
