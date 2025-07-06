@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import { auth } from "../firebase.config";
@@ -8,6 +8,11 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+
+const navigate = useNavigate();
+
+
 
   const handlEmail = (e) => {
     setUserInfo((prev) => {
@@ -29,6 +34,7 @@ const Login = () => {
     const user = userCredential.user;
     console.log(user)
     toast.success("Account login successfully!");
+    navigate('/home')
   })
   .catch((error) => {
     const errorCode = error.code;
