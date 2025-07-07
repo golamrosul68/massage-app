@@ -4,26 +4,30 @@ import Not_found from "./pages/NotFound";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
-const router = createBrowserRouter([
- 
-  {
-    path: "*",
-    element: <Not_found />,
-  },
+import Message from "./pages/Message";
+
+createBrowserRouter([
   {
     path: "/",
-    element: <Login />,
+    Component: Home,
+    children: [
+      { index: true, Component: Home },
+      { path: "about", Component: About },
+    ],
   },
-  {
-    path: "/Signup",
-    element: <Signup />,
+
+
+   {
+    path: "/Login",
+    Component: Login,
+   
   },
-  {
-    path: "/Home",
-    element: <Home />,
+   {
+    path: "/singup",
+    Component: Signup,
+   
   },
 ]);
-
 const App = () => {
   return <RouterProvider router={router} />;
 };
