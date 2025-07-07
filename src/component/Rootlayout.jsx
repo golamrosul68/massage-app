@@ -1,8 +1,13 @@
 import React from 'react'
+import { Outlet } from 'react-router'
+import Sidebar from './Sidebar'
 
 const Rootlayout = () => {
   return (
-    <div>Rootlayout</div>
+   <>
+   <Sidebar/>
+    <Outlet/>
+   </>
   )
 }
 

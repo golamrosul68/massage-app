@@ -4,9 +4,9 @@ import Sidebar from '../component/Sidebar'
 const Home = () => {
   return (
   <div className="flex">
-<Sidebar/>
 
-  <h2>bar</h2>
+
+  <h2>home page</h2>
   </div>
 
   )
