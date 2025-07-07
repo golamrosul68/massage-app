@@ -5,14 +5,15 @@ import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Message from "./pages/Message";
+import Rootlayout from "./component/Rootlayout";
 
 createBrowserRouter([
   {
     path: "/",
-    Component: Home,
+    Component: Rootlayout,
     children: [
       { index: true, Component: Home },
-      { path: "about", Component: About },
+      { path: "massage", Component: Message },
     ],
   },
 
