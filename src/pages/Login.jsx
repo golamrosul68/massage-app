@@ -40,6 +40,7 @@ const navigate = useNavigate();
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode)
+    console.log(errorMessage)
     if (errorCode.includes("auth/invalid-credential")) {
       toast.error("invalid email or password");
       setUserInfo({
